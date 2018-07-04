@@ -18,8 +18,7 @@ cache:
 build:
   stage: build
   script:
-#    - ./gradlew assemble
-    - gradle assemble
+    - ./gradlew assemble
   artifacts:
     paths:
       - build/libs/*.jar
@@ -30,7 +29,6 @@ build:
 test:
   stage: test
   script:
-#    - ./gradlew check
-    - gradle check
+    - ./gradlew check
 after_script:
   - echo "End CI"
