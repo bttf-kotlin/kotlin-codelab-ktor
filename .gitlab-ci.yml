@@ -19,7 +19,6 @@ build:
   stage: build
   script:
     - ./gradlew build
-    - java -jar build/libs/kotlin-ktor-api-master-1.0-SNAPSHOT.jar
   artifacts:
     paths:
       - build/libs/*.jar
