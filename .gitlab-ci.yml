@@ -29,6 +29,6 @@ build:
 test:
   stage: test
   script:
-    - java -jar build/libs/kotlin-ktor-api-1.0-SNAPSHOT.jar
+    - java -jar build/libs/kotlin-ktor-api-master-1.0-SNAPSHOT.jar
 after_script:
   - echo "End CI"
