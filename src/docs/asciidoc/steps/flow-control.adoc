@@ -1,0 +1,144 @@
+= Flow control
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+== Une peu de théorie
+
+
+Pour le moment nous avons vu les rapidement les éléments suivants de Kotlin :
+
+* `val` et `var`
+* `class` et `data class`
+* méthode statique
+* `companion`
+* paramètre nommé
+* paramètre par défaut
+* copy
+* string templates
+* if / else
+* gestion de la nullité avec l'opérateur Elvis
+
+Nous allons passer maintenant à deux autres éléments nécessaire pour écrire la majorité des algorithmes d'un programme.
+
+=== range
+
+Les `range` sont des expressions permettant de créer rapidement une plage de valeur très rapidement.
+Pour les utiliser, on peut utiliser la méthode `rangeTo`.
+
+[source, kotlin]
+----
+1.rangeTo(10)
+----
+
+Il existe une écrire plus courte via l'opérateur `..`.
+
+[source, kotlin]
+----
+1..10
+----
+
+NOTE: Il est possible d'utiliser également les `range` sur des lettres.
+Par exemple `val aToZ = "a".."z"`
+
+
+On peut tester la présence d'un élément dans une plage de valeur de la manière suivante.
+
+[source, kotlin]
+----
+if (i in 1..10) { // équivalent à 1 <= i && i <= 10. Avouez que c'est plus agréable à lire non ?
+    println(i)
+}
+----
+
+
+Vous trouverez plus d'informations sur les `range` sur https://kotlinlang.org/docs/reference/ranges.html#ranges[cette page].
+
+
+=== When
+
+L'expression `when` est un équivalent du `switch` présent dans de nombreux langages de programmation.
+C'est également une expression fonctionnelle permettant de faire du https://en.wikipedia.org/wiki/Pattern_matching[pattern matching].
+
+
+Il existe deux façon d'utiliser le `when`.
+Soit il prend un argument.
+Soit on ne met pas d'argument.
+Dans ce second cas, le when permet de remplacer facilement une série de if / else.
+
+L'une des écritures les plus simple du `when` est la suivante :
+
+[source, kotlin]
+----
+fun whatNumber(x: Int) {
+    when (x) {
+        0 -> println("x is zero")
+        1 -> println("x is 1")
+        else -> {
+            println("X is neither 0 or 1")
+        }
+    }
+}
+----
+
+NOTE: Dans ce premier cas, on prend un paramètre en entrée.
+Le when permet alors de vérifier si l'on "matche" une des possibilités du `when`.
+
+L'autre façon d'écrire le when est de ne pas passer d'arguments.
+Dans ce second cas, la syntaxe est la suivante.
+
+[source, kotlin]
+----
+fun whichOneIsBigger(x: Int, y: Int) {
+    when {
+        x < y -> println("x is less than y")
+        x > y -> println("X is greater than y")
+        else -> println("X must equal y")
+    }
+}
+----
+
+A plusieurs moment, on a indiqué que `when` était une expression.
+Celle-ci est donc assignable à une variable.
+La syntaxe suivante est valide.
+
+[source, kotlin]
+----
+fun startsWith(any: Any, prefix: String): Boolean {
+    val result = when (any) {
+        is String -> any.startsWith(prefix)
+        else -> false
+    }
+    return result
+}
+----
+
+On peut même simplifier le code précédent.
+
+[source, kotlin]
+----
+fun startsWith(any: Any, prefix: String): Boolean {
+    return when (any) {
+        is String -> any.startsWith(prefix)
+        else -> false
+    }
+}
+----
+
+Vous trouverez plus d'informations sur l'expression `when` sur https://kotlinlang.org/docs/reference/control-flow.html#when-expression[cette page].
+
+
+== Exercice 7
+
+[source]
+----
+git checkout step3
+----
+
+Dans l'exercice 4, nous avons remplacé chaque chiffre de la date par son équivalent en chaîne de charactères.
+Comme vous pouvez le remarquer ce n'est pas comme cela que l'on doit lire une date.
+
+Nous allons donc modifier notre `companion` pour gérer les cas des milliers, des centaines et des dizaines.
+
+Pour vous aider, il y a des tests unitaires sur step3.

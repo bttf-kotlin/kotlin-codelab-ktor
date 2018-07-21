@@ -1,5 +1,4 @@
-group 'Example'
-version '1.0-SNAPSHOT'
+
 
 buildscript {
     ext.kotlin_version = '1.2.50'
@@ -13,9 +12,19 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.3'
+}
+
 apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'idea'
+apply plugin: 'org.asciidoctor.convert'
 
+group 'Example'
+version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 jar {
@@ -43,4 +52,25 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
+}
+
+asciidoctor {
+    def source = project.sourceSets.main.java.srcDirs[0]
+
+    // add extra inputs since these include files that are included
+    inputs.dir source
+    inputs.dir source
+
+    attributes \
+        'build-gradle': file('build.gradle'),
+            'sourcedir': source,
+            'source-highlighter': 'coderay',
+            'imagesdir': 'images',
+            'toc': 'left',
+			'toclevels': '4',
+            'icons': 'font',
+            'setanchors': '',
+            'idprefix': '',
+            'idseparator': '-',
+            'docinfo1': ''
 }

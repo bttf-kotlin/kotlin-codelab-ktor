@@ -1,0 +1,137 @@
+= Pré-requis
+:toc: left
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+
+== Installation de Java 8
+
+=== Linux x64
+
+==== RPM
+
+Accéder au site de téléchargement Oracle pour le http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[jdk 8].
+
+
+Récupérer le RPM suivant jdk-8u161-linux-x64.rpm
+
+Suivez les instructions de votre gestionnaire de paquet.
+
+Changez la version de java à utiliser par votre système avec la commande suivante
+
+----
+alternatives --config java
+----
+
+Sélectionner la version JDK 8 installé précédement
+
+Éventuellement changer également la version de de `javac` avec la commande suivante
+
+
+----
+alternatives --config javac
+----
+
+NOTE: Il se peut que vous soyez obligé pour la commande alternative d'utiliser `sudo`
+
+==== Autre
+
+Accéder au site de téléchargement Oracle pour le http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[jdk 8].
+
+
+Récupérer l'archive suivante jdk-8u161-linux-x64.tar.gz
+
+Désarchiver votre archive où vous le souhaitez.
+Par exemple dans `/usr/java/jdk1.8.0_161/`
+
+Changez la version de java à utiliser avec la commande suivante
+
+----
+alternatives --config java
+----
+
+Sélectionner la version JDK 8 installé précédement
+
+Éventuellement changer également la version de de `javac` avec la commande suivante
+
+----
+alternatives --config javac
+----
+
+NOTE: Il se peut que vous soyez obligé pour la commande alternative d'utiliser `sudo`
+
+=== Mac
+
+Accéder au site de téléchargement Oracle pour le http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[jdk 8].
+
+Récupérer le fichier suivant jdk-8u161-macosx-x64.dmg
+
+Utiliser le fichier dmg et suivre les instructions d'installation.
+
+=== Windows
+
+Accéder au site de téléchargement Oracle pour le http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[jdk 8].
+
+
+Récupérer l'exécutable suivant jdk-8u161-windows-x64.exe
+
+Lancer l'exécutable et suivre les instructions
+
+Vous pouvez par la suite changer votre path pour rajouter une JAVA_HOME.
+Plus d'information sur https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html[ce site]
+
+== Installation d'un IDE
+
+=== Linux
+
+Par simplicité, nous allons installer Jetbrains Intellij IDEA Community.
+
+Accéder https://www.jetbrains.com/idea/download/#section=linux[au site] de téléchargement
+
+Récupérer l'archive de l'édition community.
+
+Désarchiver l'archive dans un répertoire de votre choix.
+
+Pour lancer l'IDE, il vous suffira d'accéder au répertoire où vous avez installé l'IDE et de lancer le fichier `idea.sh`présent dans le répertoire bin.
+
+
+=== Mac
+
+
+Par simplicité, nous allons installer Jetbrains Intellij IDEA Community.
+
+Accéder https://www.jetbrains.com/idea/download/#section=mac[au site] de téléchargement
+
+Récupérer l'archive dmg de l'édition community.
+
+Utiliser le fichier dmg et suivre les instructions d'installation.
+
+=== Windows
+
+
+Par simplicité, nous allons installer Jetbrains Intellij IDEA Community.
+
+Accéder https://www.jetbrains.com/idea/download/#section=windows[au site] de téléchargement
+
+Récupérer l'exécutable de l'édition community.
+
+Exécuter l'installeur et suivre les instructions.
+
+== Récupération du projet
+
+En ligne de commande :
+
+----
+git clone https://github.com/bttf-kotlin/kotlin-codelab-bttf.git
+git checkout step0
+----
+
+== Builder l'application 
+
+Accéder au répertoire du projet et lancer la commande suivante :
+
+----
+./gradlew build
+----

@@ -1,0 +1,192 @@
+= Les bases 
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+== Contexte
+
+Afin de bien démarrer ce codelab, nous vous avons déjà généré un squelette de projet avec le site https://start.spring.io
+
+Ce site permet d'avoir un projet prêt à l'emploi et nous évitera de perdre du temps dans ce codelab.
+Nous vous invitons si vous ne le connaissez pas à découvrir ce site après le codelab.
+
+
+== Un peu de théorie
+
+=== `val` vs `var`
+
+En Kotlin, il existe deux mot clés pour déclarer des variables. Le premier s'appelle `val` et le second `var
+
+`val` est immutable alors que `var` est mutable.
+
+[source,kotlin]
+----
+val name = "kotlin"
+----
+
+Dans ce premier cas, on doit obligatoirement initialiser `name` et on ne pourra pas changer sa valeur.
+Si l'on a besoin de le faire, il faudra utiliser le mot clé `var`.
+
+[source,kotlin]
+----
+var name: String
+name = "kotlin"
+----
+
+Dans ce second cas, grâce au mot clé `var`, on peut initialiser `name` dans la suite du programme.
+
+NOTE: On peut remarquer que dans le cas de `val` le compilateur est capable d'inférer le type de `name`.
+Il n'est pas nécessaire de le préciser.
+Dans le cas de `var` c'est différent. L'initialisation tardive de `name` empêche le compilateur d'inférer le type.
+Il est donc nécessaire de le préciser.
+
+NOTE: Comme vous pouvez le remarquer il n'y a pas besoin de `;` à la fin des instructions.
+
+
+=== Qu'est ce qu'une `Class` ?
+
+
+Une classe Kotlin ressemble à une classe Java à quelques différences prêt.
+On la déclare avec le mot clé `class`
+
+----
+class User {
+}
+----
+
+On peut lui déclarer un ou plusieurs contructeurs.
+Le premier constructeur sera appelé constructeur primaire.
+Il est déclaré dans l'entête de la classe.
+
+[source, kotlin]
+----
+class User constructor(firstName: String) {
+}
+----
+
+Dans le cas où le constructeur n'aurait pas d'annotation, il est possible de réduire la syntaxe du constructeur.
+
+[source, kotlin]
+----
+class User (firstName: String) {
+}
+----
+
+
+Vous trouverez plus d'informations si besoin sur https://kotlinlang.org/docs/reference/classes.html#classes[le site officiel de Kotlin].
+
+
+=== Qu'est ce qu'une `Data Class` ?
+
+Contrairement à une `Class`, une `Data Class` représente un POJO contenant de la donnée.
+Il a donc pour but de stocker des données dans des attributs et éventuellement de fournir des méthodes pour manipuler le contenu de notre objet.
+
+Pour déclarer une `Data Class`, il suffit d'utiliser le mot clé `data` conjointement au mot clé `class`.
+
+[source, kotlin]
+----
+data class User(val name: String, val age: Int)
+----
+
+NOTE: Comme pour les `class`, il n'est pas nécessaire de mettre les accolades lorsqu'il n'y a pas de méthodes dans la classe.
+
+Là où la `Data Class` est très intéressante, c'est que le compilateur va nous aider pour l'avenir en fournissant automatiquement les éléments suivants à notre objet.
+
+* Les méthodes `equals()` et `hashCode()`
+* La méthode `toString()` renvoyant une chaîne de charactères de la forme suivante `User(name=John, age=42)`
+* Une méthode de `copy` (évoqué plus tard dans ce codelab)
+* Les méthodes dites `componentN()` qui sont utile lors de l'utilisation du https://kotlinlang.org/docs/reference/multi-declarations.html[destructuring].
+
+Vous trouverez plus d'informations si besoin sur https://kotlinlang.org/docs/reference/data-classes.html[le site officiel de Kotlin].
+
+
+== Exercice 1
+
+Passons maintenant à la pratique.
+
+Si ce n'est pas déjà fait, faites un checkout du step0.
+
+[source]
+----
+git checkout step0
+----
+
+Aller dans la `Data Class` `Event` et supprimer l'annotation `@JsonIgnoreProperties`.
+
+Lancer l'application via la classe `KotlinCodelabBttfApplication`.
+
+Corriger le problème que vous rencontrez.
+
+NOTE: Comme vous pouvez le remarquer, `Event` est une `Data Class`.
+La syntaxe est très concise pour créer des POJOs.
+
+
+== Un peu de théorie
+
+== Les fonctions
+
+Maintenant que nous avons joué rapidement avec notre `Data Class` `Event`, nous allons présenter les fonctions en Kotlin.
+
+Une fonction Kotlin se déclare de la manière suivant :
+
+[source, kotlin]
+----
+fun sum(a: Int, b: Int): Int {
+    return a + b
+}
+----
+<1> *fun* est le mot clé permettant de définir une fonction.
+Contrairement à Java, une fonction Kotlin a la portée publique par défaut.
+<2> *sum* est le nom de la fonction.
+Nous reviendrons sur les noms juste après.
+<3> On peut déclarer ensuite les paramètres d'entrée.
+Ici `a` et `b` tous les deux de type Int.
+<4> Enfin on indique le type de retour `Int`
+
+Comme vous pouvez le remarquer cette fonction est très simple.
+Il est donc possible en Kotlin de raccourcir la syntaxe d'une telle fonction à une seule ligne.
+Le code aura alors la forme suivante.
+
+[source, kotlin]
+----
+fun sum(a: Int, b: Int) = a + b
+----
+
+Vous trouverez plus d'informations sur les fonctions sur https://kotlinlang.org/docs/reference/functions.html#function-declarations[le site officiel de Kotlin].
+
+
+NOTE: Il est possible de déclarer une méthode avec des espaces dans le nom.
+C'est une pratique à réserver aux tests mais qui s'avère bien pratique pour écrire des tests explicites.
+
+[source, kotlin]
+----
+class MyTestCase {
+     @Test fun `ensure everything works`() {
+     }
+
+     @Test fun ensureEverythingWorks_onAndroid() {
+     }
+}s
+----
+
+Vous trouverez plus d'informations sur les conventions de nommage des fonctions sur https://kotlinlang.org/docs/reference/coding-conventions.html#function-names[cette page]
+
+
+== Exercice 2
+
+Dans ce second exercice, nous allons filter automatiquement les événements qui n'ont pas de date dans notre source de données.
+
+Pour cela, accéder à la classe `EventController` et ajouter un filtre sur le retour de `repository. findAll()`.
+
+NOTE: Pour information, l'API collection de Kotlin fourni de nombreuses méthodes utilitaires sur les classes.
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+= Pour aller plus loin
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+
+== Exercice 8
+
+Isoler la partir conversion de chiffre en lettre et déclarer ces instructions dans une fonction en tant qu'Extension de la classe String.
+
+voir https://kotlinlang.org/docs/reference/extensions.html[la doc des extensions de classe]
+
+== Exercice 9
+
+Passer la fonction de conversion de chiffre en lettre en tant que paramètre de la fonction de la coroutine.
+
+----
+Smart casts (pas besoin de recaster si tu fais un is)
+Interface
+function (single expression + member function)
+function literals
+----
