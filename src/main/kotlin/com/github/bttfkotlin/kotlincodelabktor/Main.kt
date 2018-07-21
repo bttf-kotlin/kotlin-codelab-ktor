@@ -1,5 +1,7 @@
 package com.github.bttfkotlin.kotlincodelabktor
 
-fun main(args: Array<String>) {
-    print("Hello")
-}
+import com.github.bttfkotlin.kotlincodelabktor.service.EventService
+import com.github.bttfkotlin.kotlincodelabktor.util.EventUtil
+
+fun main(args: Array<String>) =
+    EventUtil.prettier(EventService.getAllEvents()).forEach { println(it) }
