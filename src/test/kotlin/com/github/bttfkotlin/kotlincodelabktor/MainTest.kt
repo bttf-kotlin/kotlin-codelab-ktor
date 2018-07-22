@@ -15,7 +15,18 @@ class MainTest {
         val event = (EventUtil.prettier(events))[0]
         assertEquals(
                 event.date
-                , "one nine eight five")
+                , "one thousand nine hundred and eighty five")
+    }
+
+    @Test
+    fun `1913 should return one thousand nine hundred and thirteen`() {
+        val testedDate = "1913"
+
+        val events = listOf(Event(testedDate, "test", "test"))
+        val event = (EventUtil.prettier(events))[0]
+        assertEquals(
+                event.date
+                , "one thousand nine hundred and thirteen")
     }
 
     @Test
