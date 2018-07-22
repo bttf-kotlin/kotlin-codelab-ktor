@@ -1,8 +1,9 @@
-
-
 buildscript {
     ext.kotlin_version = '1.2.51'
     ext.ktor_version = '0.9.3'
+
+    ext.logback_version = '1.2.1'
+    ext.jackson_version = '2.9.2'
 
     repositories {
         mavenCentral()
@@ -23,7 +24,7 @@ apply plugin: 'idea'
 apply plugin: 'idea'
 apply plugin: 'org.asciidoctor.convert'
 
-group 'Example'
+group 'com.github.bttfkotlin.kotlincodelabktor'
 version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -42,10 +43,18 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "io.ktor:ktor-server-core:$ktor_version"
+    compile "io.ktor:ktor-server-netty:$ktor_version"
+    compile "io.ktor:ktor-jackson:$ktor_version"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jackson_version"
+    compile "ch.qos.logback:logback-classic:$logback_version"
+
+    testCompile "io.ktor:ktor-server-tests:$ktor_version"
     testCompile('org.junit.jupiter:junit-jupiter-api:5.2.0')
     testCompile('org.junit.jupiter:junit-jupiter-params:5.2.0')
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
 }
+
+kotlin.experimental.coroutines = 'enable'
 
 test {
     useJUnitPlatform()
@@ -67,7 +76,7 @@ asciidoctor {
             'source-highlighter': 'coderay',
             'imagesdir': 'images',
             'toc': 'left',
-			'toclevels': '4',
+            'toclevels': '4',
             'icons': 'font',
             'setanchors': '',
             'idprefix': '',
