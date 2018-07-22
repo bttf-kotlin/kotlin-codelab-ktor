@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.util.DefaultIndenter
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.github.bttfkotlin.kotlincodelabktor.service.EventService
+import com.github.bttfkotlin.kotlincodelabktor.util.EventUtil
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -12,6 +14,7 @@ import io.ktor.features.Compression
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.DefaultHeaders
 import io.ktor.jackson.jackson
+import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
@@ -35,6 +38,9 @@ fun Application.module() {
     routing {
         get("/") {
             call.respondText("Hello JugSummer Camp")
+        }
+        get("/events") {
+            call.respond(EventUtil.prettier(EventService.getAllEvents()))
         }
     }
 }
