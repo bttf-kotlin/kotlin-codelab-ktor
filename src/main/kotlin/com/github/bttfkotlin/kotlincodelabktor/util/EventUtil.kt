@@ -27,8 +27,14 @@ object EventUtil {
     )
 
     fun prettier(events: List<Event>): List<Event> {
-        return events.filter { it.date.isNotEmpty()}.map {
-            it.copy(date = """${unitsString[it.date[0].toString().toInt()]} ${unitsString[it.date[1].toString().toInt()]} ${unitsString[it.date[2].toString().toInt()]} ${unitsString[it.date[3].toString().toInt()]}""")
-        }
+        return events.filter { it.date.isNotEmpty() && it.date.length == 4 }
+                .map {
+                    val tenthAndUnit: String = when ("""${it.date[2]}${it.date[3]}""".toInt()) {
+                        in 0..19 -> unitsString["""${it.date[2]}${it.date[3]}""".toInt()]
+                        else -> """${tenthString[it.date[2].toString().toInt()]} ${unitsString[it.date[3].toString().toInt()]}"""
+                    }
+
+                    it.copy(date = """${thousandsString[it.date[0].toString().toInt()]} ${hundredsString[it.date[1].toString().toInt()]} and $tenthAndUnit""")
+                }
     }
 }
