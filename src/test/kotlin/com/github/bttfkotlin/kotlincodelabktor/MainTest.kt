@@ -1,9 +1,10 @@
 package com.github.bttfkotlin.kotlincodelabktor
 
 import com.github.bttfkotlin.kotlincodelabktor.bean.Event
-import com.github.bttfkotlin.kotlincodelabktor.util.EventUtil
+import com.github.bttfkotlin.kotlincodelabktor.util.prettier
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import java.util.*
 
 class MainTest {
 
@@ -12,7 +13,7 @@ class MainTest {
         val testedDate = "1985"
 
         val events = listOf(Event(testedDate, "test", "test"))
-        val event = (EventUtil.prettier(events))[0]
+        val event = (Date().prettier(events))[0]
         assertEquals(
                 event.date
                 , "one thousand nine hundred and eighty five")
@@ -23,7 +24,7 @@ class MainTest {
         val testedDate = "1913"
 
         val events = listOf(Event(testedDate, "test", "test"))
-        val event = (EventUtil.prettier(events))[0]
+        val event = (Date().prettier(events))[0]
         assertEquals(
                 event.date
                 , "one thousand nine hundred and thirteen")
@@ -32,7 +33,7 @@ class MainTest {
     @Test
     fun `When there is no date, nothing should be return`() {
         val events = listOf(Event("", "test", "test"))
-        val size = EventUtil.prettier(events).size
+        val size = Date().prettier(events).size
 
         assertEquals(
                 size
