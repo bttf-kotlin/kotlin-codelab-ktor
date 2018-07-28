@@ -1,0 +1,31 @@
+= kTor
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+
+== Un peu de théorie
+
+=== kTor
+
+C'est quoi?
+
+Quelle lib ?
+Quelle config?
+
+ktor.io ?
+
+
+== Exercice 3
+
+[source]
+----
+git checkout step3
+----
+
+Nous avons ajouté kTor (Voir `build.gradle` et `Main.kt`)
+
+Ajouter un point d'entré REST pour afficher notre liste.
+
+

@@ -1,0 +1,217 @@
+= Un peu de `fun`
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+
+== Un peu de théorie
+
+=== Static method
+
+Contrairement à Java, Kotlin ne supporte pas les méthodes statiques pour une classe.
+En fait, les méthodes statiques n'appartiennent pas à l'instance de l'objet mais plutôt au type lui-même.
+De ce fait, il est conseillé en Kotlin de définir les méthodes, que l'on veut statique, directement au niveau du package.
+
+[source, kotlin]
+----
+fun toUpperCase(input:String):String{
+    return if(input.isEmpty()) "" else input.toUpperCase()
+}
+----
+
+La méthode précédente pourra être appelé directement (sans instance d'un objet) de la façon suivante :
+
+[source, kotlin]
+----
+fun main(args: Array<String>) {
+    val message = "Kotlin : le back du futur"
+    println("Initial case: $message")
+    println("Upper case: " + toUpperCase(message))
+}
+----
+
+Puisque l'on vient de voir les méthodes statiques, on peut se demander comment déclarer un singleton.
+Pour rappel, le singleton est un pattern de programmation limitant l'instanciation d'une classe à une unique instance.
+Une fois l'instance créée, elle "vivra" tout au long de la durée de vie de votre programme.
+
+Voici un singleton en Kotlin :
+
+[source, kotlin]
+----
+object MonSingleton {
+    private var count = 0
+    fun callMe():Unit {
+        println("Ça fait $count fois que je suis appelé !")
+    }
+}
+----
+
+Avec l'exemple précédent, on peut appeler directement notre méthode via `MonSingleton.callMe()`.
+
+=== `Object`
+
+TODO
+
+Il existe aussi la notion de Companion
+
+Vous trouverez plus d'informations sur les `companion` sur https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects[cette page]
+
+
+== Un peu de théorie
+
+=== Paramètre nommé
+
+Contrairement à Java, Kotlin fourni le support des paramètres nommés.
+Ceux-ci nous permettent notamment d'être explicites sur le nommage des arguments lorsqu'ils sont passés à une fonction.
+Cela à l'avantage d'expliciter les appels notament lorsqu'il y a de nombreux arguments.
+
+
+Dans l'exemple suivant, il n'est pas aisé de savoir à quoi correspond chaque valeur passé en paramètre.
+
+[source, kotlin]
+----
+val string = "Kotlin is a great language"
+string.endsWith("Great Language", true)
+----
+
+Avec les paramètres nommés cela devient beaucoup plus lisible.
+
+[source, kotlin]
+----
+val string = "Kotlin is a great language"
+string.endsWith(suffix = "Great Language", ignoreCase = true)
+----
+
+Un autre bénéfice des paramètres nommés est la possibilité pour le code appelant la fonction de réorganiser l'ordre des paramètres.
+Le code suivant est toujours valide.
+
+[source, kotlin]
+----
+val string = "Kotlin is a great language"
+string.endsWith(ignoreCase = true, suffix = "Great Language")
+----
+
+WARNING: Les paramètres nommés ne peuvent être utilisés que sur des fonctions définies par Kotlin et non sur des fonctions définies par Java.
+Cela est dû au fait que le code Java, lorsqu'il est compilé en bytecode, ne conserve pas toujours les noms des paramètres.
+
+
+Vous trouverez plus d'informations sur les `paramètre nommé` sur https://kotlinlang.org/docs/reference/functions.html#named-arguments[cette page]
+
+
+=== Paramètre par défaut
+
+
+Il est souvent utile de définir des paramètres par défaut pour nos méthodes.
+En Java, cela se traduit par l'overloading.
+On a alors un code au format suivant
+
+[source, java]
+----
+public void myFunction(String string, boolean ignoreCase) {
+    // do stuff
+}
+
+public void myFunction(String string) {
+    myFunction(string, false);
+}
+----
+
+Kotlin fournit une alternative très intéressante.
+Il est possible dans la définition d'une fonction de préciser des valeurs par défaut.
+L'équivalent du code Java précédent serait le suivant en Kotlin.
+
+[source, kotlin]
+----
+fun myFunction(string: String, ignoreCase: Boolean = false): Unit {
+    // do stuff
+}
+----
+
+On peut alors appeler notre code de la façon suivante.
+
+[source, kotlin]
+----
+myFunction("call without default parameter", true)
+myFunction("call with default parameter")
+----
+
+
+Vous trouverez plus d'informations sur les `paramètres par défaut` sur https://kotlinlang.org/docs/reference/functions.html#default-arguments[cette page]
+
+
+=== Copy
+
+Comme promis au début de ce codelab, nous allons aborder rapidement la méthode copy des `Data class`.
+Pour rappel, lorsque l'on déclare une `Data class`, on obtient une méthode de copie prête à l'emploi.
+Cette méthode vous permet de créer une nouvelle instance de votre type tout en sélectionnant les champs que vous souhaitez modifier.
+Par exemple, vous pouvez décider que vous souhaitez obtenir une nouvelle instance d'une classe `Event` à partir d'une instance existante dont vous souhaitez simplement modifier les champs de date et de lieu.
+
+[source, kotlin]
+----
+event.copy(location = "Tours", date = "2018-02-23")
+----
+
+=== String templates
+
+En tant que développeurs Java, nous sommes familiers avec l'utilisation de la concaténation de chaînes de caractères.
+Si l'on garde la pattern appris en Java cela donnerait le code suivant en Kotlin.
+
+[source, kotlin]
+----
+val name = "TouraineTech"
+print("Hello " + name)
+----
+
+Les `String templates` sont un moyen simple et efficace d'incorporer des valeurs, des variables ou même des expressions dans une chaîne sans avoir besoin d'utiliser la concaténation précédente.
+
+Les `String templates` améliorent l'expérience du développeur lors de l'utilisation de plusieurs variables dans un seul littéral.
+En effet, ils conservent la chaîne plus courte et plus lisible.
+L'utilisation est extrêmement simple. Une valeur ou une variable peut être intégrée simplement par préfixer avec un symbole dollar ($):
+
+[source, kotlin]
+----
+val name = "TouraineTech"
+print("hello $name")
+----
+
+Là où ça devient intéressant pour le templating, c'est qu'il existe plusieurs format de `String`.
+Pour le moment nous avons vu le `String correspondant` à celui en Java avec la forme suivante `val name = "TouraineTech"`.
+Il existe également le `raw String`.
+Il se déclare de la façon suivante.
+
+[source, kotlin]
+----
+val text = """
+    |Tell me and I forget.
+    |Teach me and I remember.
+    |Involve me and I learn.
+    |(Benjamin Franklin)
+    """.trimMargin()
+----
+
+NOTE: Par défaut le "|" est utilisé comme préfixe indiquant la position de la marge gauche du `raw string`.
+On peut néanmois choisir un autre caractère et le passer en paramètre de la méthode `trimMargin`.
+Par exemple, `trimMargin(">")`.
+
+
+Vous trouverez plus d'informations sur les `String template` sur https://kotlinlang.org/docs/reference/basic-types.html#string-literals[cette page]
+
+== Exercice 2
+
+Après autant de théorie, repassons à la pratique.
+
+Afin de commancer l'exercice suivant, faites un checkout du step2.
+
+[source]
+----
+git checkout step2
+----
+
+Modifier la méthode `prettier` pour remplacer chaque chiffre par son équivalent en chaîne de charactères en utilisant le tableau `unitsString` déjà disponible.
+
+Pensez à vous aider des tests unitaires
+
+
+
+
