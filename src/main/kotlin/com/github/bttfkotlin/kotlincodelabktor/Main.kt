@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.github.bttfkotlin.kotlincodelabktor.service.EventService
-import com.github.bttfkotlin.kotlincodelabktor.util.EventUtil
+import com.github.bttfkotlin.kotlincodelabktor.util.prettier
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -18,6 +18,8 @@ import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.DevelopmentEngine.main(args)
 
@@ -40,7 +42,7 @@ fun Application.module() {
             call.respondText("Hello JugSummer Camp")
         }
         get("/events") {
-            call.respond(EventUtil.prettier(EventService.getAllEvents()))
+            call.respond(Date().prettier(EventService.getAllEvents()))
         }
     }
 }
