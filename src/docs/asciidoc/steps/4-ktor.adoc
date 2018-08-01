@@ -9,12 +9,35 @@ ifndef::sourcedir[:sourcedir: ../../main/kotlin]
 
 === kTor
 
-C'est quoi?
+kTor est un Framework développé par JetBrain pour créer rapidement des applications web (servlet 3.0) ou API REST. kTor propose des bibliothèques pour réaliser une application complète. kTor est construit autour des coroutines de Kotlin et est donc asynchrone par nature. Toutes les fonctionnalités de kTor sont testables facilement.
 
-Quelle lib ?
-Quelle config?
+==== Voici comment créer une application REST avec kTor
+```
+import io.ktor.server.netty.*
+import io.ktor.routing.*
+import io.ktor.application.*
+import io.ktor.http.*
+import io.ktor.response.*
+import io.ktor.server.engine.*
 
-ktor.io ?
+fun main(args: Array<String>) {
+    embeddedServer(Netty, 8080) {
+        routing {
+            get("/") {
+                call.respondText("Hello, world!", ContentType.Text.Html)
+            }
+        }
+    }.start(wait = true)
+}
+```
+
+Pour utiliser kTor sur un projet Kotlin, il suffit d'ajouter la dependance : 
+```
+compile "io.ktor:ktor-server-core:0.9.3"
+```
+pour gradle
+
+Le site http://ktor.io[ktor.io] permet de créer des templates d'application selon votre besoin (comme le fait http://start.spring.io)
 
 
 == Exercice 3
