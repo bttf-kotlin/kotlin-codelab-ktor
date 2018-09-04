@@ -210,8 +210,7 @@ git checkout step2
 
 Modifier la méthode `prettier` pour remplacer chaque chiffre par son équivalent en chaîne de charactères en utilisant le tableau `unitsString` déjà disponible.
 
-Pensez à vous aider des tests unitaires
+Il n'y a pas qu'une seule solution. 
 
-
-
+Pensez à vous aider des tests unitaires présents dans `MainTest.kt`.
 

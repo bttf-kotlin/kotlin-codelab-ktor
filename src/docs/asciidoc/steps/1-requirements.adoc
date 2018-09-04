@@ -94,7 +94,7 @@ Récupérer l'archive de l'édition community.
 
 Désarchiver l'archive dans un répertoire de votre choix.
 
-Pour lancer l'IDE, il vous suffira d'accéder au répertoire où vous avez installé l'IDE et de lancer le fichier `idea.sh`présent dans le répertoire bin.
+Pour lancer l'IDE, il vous suffira d'accéder au répertoire où vous avez installé l'IDE et de lancer le fichier `idea.sh`présent dans le sous-répertoire bin.
 
 
 === Mac
@@ -134,3 +134,5 @@ Accéder au répertoire du projet et lancer la commande suivante :
 ----
 ./gradlew build
 ----
+
+Voilà c'est bon vous êtes prêt pour effectuer le codelab avec nous. 

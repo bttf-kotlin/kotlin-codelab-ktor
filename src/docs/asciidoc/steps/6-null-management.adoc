@@ -145,5 +145,5 @@ git checkout step5
 
 Modifier la fonction `prettier` en extension de la classe java.util.Date.
 
-N'oublie pas d'exécuter les TU!
+N'oubliez pas d'exécuter les TU!
 

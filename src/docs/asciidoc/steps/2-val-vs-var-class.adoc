@@ -6,7 +6,7 @@ ifndef::sourcedir[:sourcedir: ../../main/kotlin]
 
 == Contexte
 
-Afin de bien démarrer ce codelab, nous vous avons déjà créé un projet Kotlin avec Gradle
+Afin de bien démarrer ce codelab, nous vous avons déjà créé un projet Kotlin avec Gradle.
 
 == Un peu de théorie
 
@@ -100,6 +100,7 @@ Vous trouverez plus d'informations si besoin sur https://kotlinlang.org/docs/ref
 == Exercice 0
 
 Passons maintenant à la pratique.
+Pour ce premier exercice, nous allons le faire ensemble. 
 
 Si ce n'est pas déjà fait, faites un checkout du step0.
 
@@ -121,7 +122,7 @@ Une fonction Kotlin se déclare de la manière suivant :
 
 [source, kotlin]
 ----
-fun sum(a: Int, b: Int): Int {
+fun sum(a: Int, b: Int): Int { // <1> <2> <3> <4>
     return a + b
 }
 ----
@@ -145,8 +146,13 @@ fun sum(a: Int, b: Int) = a + b
 Vous trouverez plus d'informations sur les fonctions sur https://kotlinlang.org/docs/reference/functions.html#function-declarations[le site officiel de Kotlin].
 
 
-NOTE: Il est possible de déclarer une méthode avec des espaces dans le nom.
+[NOTE] 
+--
+Il est possible de déclarer une méthode avec des espaces dans le nom.
+Pour cela nous utiliserons le charactère `.
+
 C'est une pratique à réserver aux tests mais qui s'avère bien pratique pour écrire des tests explicites.
+--
 
 [source, kotlin]
 ----
@@ -164,25 +170,18 @@ Vous trouverez plus d'informations sur les conventions de nommage des fonctions 
 
 == Exercice 1
 
-Si ce n'est pas déjà fait, faites un checkout du step0.
+Si ce n'est pas déjà fait, faites un checkout du step1.
 
 [source]
 ----
 git checkout step1
 ----
 
-Dans cet, nous allons filter automatiquement les événements qui n'ont pas de date dans notre source de données.
+Dans cet exercice, nous allons filter automatiquement les événements qui n'ont pas de date dans notre source de données.
 
 Pour cela, accéder à la classe `EventUtil` et ajouter un filtre sur le retour de la méthode `prettier`.
 
+Pensez à vous aider des tests unitaires présents dans `MainTest.kt`.
+
 NOTE: Pour information, l'API collection de Kotlin fourni de nombreuses méthodes utilitaires sur les classes.
-
-
-
-
-
-
-
-
-
 
