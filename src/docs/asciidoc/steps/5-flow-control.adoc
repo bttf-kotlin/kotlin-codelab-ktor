@@ -141,4 +141,4 @@ Comme vous pouvez le remarquer ce n'est pas comme cela que l'on doit lire une da
 
 Nous allons donc modifier notre `fun prettier` pour gérer les cas des milliers, des centaines et des dizaines.
 
-Pour vous aider, il y a des tests unitaires dans la classe `MainTest.kt`.
+Pour vous aider, il y a des tests unitaires dans la classe `EventUtilTest.kt`.

@@ -181,7 +181,7 @@ Dans cet exercice, nous allons filter automatiquement les événements qui n'ont
 
 Pour cela, accéder à la classe `EventUtil` et ajouter un filtre sur le retour de la méthode `prettier`.
 
-Pensez à vous aider des tests unitaires présents dans `MainTest.kt`.
+Pensez à vous aider des tests unitaires présents dans `EventUtilTest.kt`.
 
 NOTE: Pour information, l'API collection de Kotlin fourni de nombreuses méthodes utilitaires sur les classes.
 
