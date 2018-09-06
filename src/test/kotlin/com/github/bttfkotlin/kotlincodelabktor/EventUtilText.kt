@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.util.*
 
-class MainTest {
+class EventUtilText {
 
     @Test
     fun `1985 should return one nine eight five`() {
