@@ -5,7 +5,7 @@ import com.github.bttfkotlin.kotlincodelabktor.util.EventUtil
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MainTest {
+class EventUtilText {
 
     @Test
     fun `1985 should return one nine eight five`() {
