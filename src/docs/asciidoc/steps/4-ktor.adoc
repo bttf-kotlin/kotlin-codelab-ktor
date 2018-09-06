@@ -9,7 +9,11 @@ ifndef::sourcedir[:sourcedir: ../../main/kotlin]
 
 === kTor
 
-kTor est un Framework développé par JetBrain pour créer rapidement des applications web (servlet 3.0) ou API REST. kTor propose des bibliothèques pour réaliser une application complète. kTor est construit autour des coroutines de Kotlin et est donc asynchrone par nature. Toutes les fonctionnalités de kTor sont testables facilement.
+Ktor est un framework d'application Web écrit lui-même en Kotlin, dont le but est de fournir un outil de création d'application web (servlet 3.0) ou API REST en Kotlin.
+Le livrable produit peut être hébergé sur un containeur de servlet comme Tomcat ou en standalone avec, par exemple, Netty.
+kTor est construit autour des coroutines de Kotlin et est donc asynchrone par nature.
+kTor n'oblige pas à utiliser une framework ou un outil, vous pouvez donc utiliser ce que vous voulez pour la journalisaton, l'injection de dépendance, le templating,...
+kTor se veut léger, mais extensible par un mécanisme de plugin utilisant le DSL de Kotlin.
 
 ==== Voici comment créer une application REST avec kTor
 ```
