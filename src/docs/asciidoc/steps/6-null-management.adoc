@@ -134,6 +134,46 @@ Vous trouverez plus d'informations sur les `String template` sur https://kotlinl
 
 === Les extensions
 
+Les extensions `Kotlin` permettent d'étendre un type de données sans pour autant modifier la classe de départ. 
+Cela est très pratique lorsque l'on souhaite ajouter des comportements sur une classe mais que l'on n'a pas la main sur le code source. 
+
+Prenons le code suivant : 
+
+[source,kotlin]
+----
+open class Humain {
+    fun voyager(destination: String) {
+        print("Voyager ${destination}")
+    }
+}
+----
+
+
+Par défaut, un humain peut voyager. 
+Mais admettons que l'humain soit devenu sage et que l'on veille lui permettre de voyager dans le temps. 
+On peut le faire via l'extension suivante : 
+
+[source,kotlin]
+----
+fun Humain.voyagerDansLeTemps(destination: String, annee: Int) {
+        print("Voyager ${destination} en ${annee}")
+}
+----
+
+Ensuite on pourra utiliser notre extension de la manière suivante: 
+
+[source,kotlin]
+----
+val humain: Humain = Humain()
+humain.voyager("A La Rochelle")
+humain.voyagerDansLeTemps("A La Rochelle", 1985)
+----
+
+Il existe néanmoins quelques limites aux extension. 
+ 
+* Il n'est pas possible de surcharger une méthode de classe ou interface existante. 
+* Il est nécessaire d'importer l'extension dès que l'on souhaite l'utiliser.
+
 == Exercice 5
 
 Afin de commancer l'exercice suivant, faites un checkout du step5.
