@@ -1,4 +1,4 @@
-= Les `companion`, vos meilleurs amis
+= Un peu de `fun`
 Adrien Pessu
 Gautier de Saint Martin Lacaze
 ifndef::imagesdir[:imagesdir: ../images]
@@ -49,70 +49,6 @@ object MonSingleton {
 
 Avec l'exemple précédent, on peut appeler directement notre méthode via `MonSingleton.callMe()`.
 
-=== `companion`
-
-Maintenant que l'on a présenté la façon de déclarer une méthode statique et un singleton, on peut se demander comment peut on faire pour avoir une méthode statique dans une classe comme en Java.
-C'est à ce moment là que le `companion` (ou `companion object`) est utile.
-
-Ce sera notamment utile dans le cas où l'on veut créer une factory.
-
-[source, kotlin]
-----
-class User private constructor(val login: String) {
-    companion object UserFactory {
-        fun create(login: String): User {
-            return User(login)
-        }
-    }
-}
-----
-
-NOTE: Comme vous pouvez le remarquer le constructeur de `User` est privé.
-Il n'est donc pas possible d'instancier `User` en dehors de sa classe.
-
-NOTE: Le `companion` a également accès à toutes les méthodes ainsi que tous les membres de la classe `User`.
-
-NOTE: Il est possible de "nommer" un `companion` en utilisant la syntaxe suivante : `companion object MonCompanion {}`.
-Il sera alors possible d'appeler le companion dans la classe principale via `MonCompanion`.
-
-Pour appeler la méthode de création d'un `User`, vous devez utiliser le code suivant :
-
-[source, kotlin]
-----
-User.UserFactory.create("myLogin")
-----
-
-Comme c'est un peu long et que Kotlin pense aux développeurs, vous pouvez utiliser le raccourci suivant :
-
-[source, kotlin]
-----
-User.create("myLogin")
-----
-
-Vous trouverez plus d'informations sur les `companion` sur https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects[cette page]
-
-== Exercice 3
-
-Après autant de théorie, repassons à la pratique.
-Nous allons créer notre premier `companion` dans la classe `EventController`.
-
-Afin de commancer l'exercice suivant, faites un checkout du step1.
-
-[source]
-----
-git checkout step1
-----
-
-
-Ce compagnon aura la charge à la fois de remplacer le filtre utilisé dans la méthode `get`, mais également de rendre les données plus "jolie".
-
-* Ajouter le `companion` `Letter` à la classe `EventController`
-* Ajouter une méthode nommée `prettier` au `companion`
-** la méthode prendra en paramètre une liste d'`Event` et retournera le type `Any`
-** la méthode permettra de filter les événements sans date
-* Remplacer le filtre actuellement dans la méthode `get`par votre nouveau `companion`
-
-Pour vous aider, il y a des tests unitaires sur step1.
 
 == Un peu de théorie
 
@@ -253,20 +189,20 @@ Par exemple, `trimMargin(">")`.
 
 Vous trouverez plus d'informations sur les `String template` sur https://kotlinlang.org/docs/reference/basic-types.html#string-literals[cette page]
 
+== Exercice 2
 
-== Exercice 4
+Après autant de théorie, repassons à la pratique.
 
-Dans l'exercice 3, nous avons créé notre `companion` avec une méthode nommé `prettier`.
-Nous allons maintenant enrichir cette méthode pour transformer les dates du format chiffre vers le format lettres.
+Afin de commancer l'exercice suivant, faites un checkout du step2.
 
-* Ajouter un tableau de valeurs contenant les chaines de caractères pour les chiffres 0 à 9 en anglais
-** Pour 1, on utilisera "one"
-** ...
-* Dans votre méthode `prettier`, pour chaque date, remplacer chaque chiffre par son équivalent en chaîne de charactères
+[source]
+----
+git checkout step2
+----
 
-Pour vous aider, il y a des tests unitaires sur step1.
+Modifier la méthode `prettier` pour remplacer chaque chiffre par son équivalent en chaîne de charactères en utilisant le tableau `unitsString` déjà disponible.
 
-== Corrigé
+Il n'y a pas qu'une seule solution. 
 
-Nous vous invitons à regarder https://github.com/bttf-kotlin/kotlin-codelab-bttf/blob/7d1cea87a33fc6f13e2244c62c4f9df9731585e3/src/main/kotlin/com/github/kotlincodelabbttf/controllers/EventController.kt#L24-L28[notre solution] pour la comparer avec la votre.
-Notamment la contruction de la chaîne de caractères.
+Pensez à vous aider des tests unitaires présents dans `EventUtilText.kt`.
+
