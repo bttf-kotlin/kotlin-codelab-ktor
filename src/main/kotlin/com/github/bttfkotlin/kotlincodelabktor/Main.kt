@@ -42,7 +42,12 @@ fun Application.module() {
             call.respondText("Hello JugSummer Camp")
         }
         get("/events") {
-            call.respond(Date().prettier(EventService.getAllEvents()))
+            val events  = when (call.request.queryParameters["sort"]) {
+                "asc" -> EventService.getAllEvents().sortedBy { it.date }
+                "desc" -> EventService.getAllEvents().sortedByDescending { it.date }
+                else -> EventService.getAllEvents()
+            }
+            call.respond(Date().prettier(events))
         }
     }
 }
