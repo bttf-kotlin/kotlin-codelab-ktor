@@ -11,7 +11,13 @@ object EventUtil {
 
     fun prettier(events: List<Event>): List<Event> {
         return events.filter { it.date.isNotEmpty()}.map {
-            it.copy(date = """${unitsString[it.date[0].toString().toInt()]} ${unitsString[it.date[1].toString().toInt()]} ${unitsString[it.date[2].toString().toInt()]} ${unitsString[it.date[3].toString().toInt()]}""")
+            it.copy(date = prettyDate(it.date))
         }
     }
+
+    fun prettyDate(date: String) = date.asSequence()
+            .map { it -> it.toString() } // On passe par un String afin d'avoir la valeur du caractère et non pas la valeur ASCII (exemple : 49 en ASCII => 1)
+            .map { it -> it.toInt()} // On récupère la valeur du caractère qui nous servira d'index par la suite
+            .map { it -> unitsString[it]}
+            .reduce {left, right -> """$left $right"""} // Utilisation du reduce avec un string template pour créer la chaîne finale.
 }
