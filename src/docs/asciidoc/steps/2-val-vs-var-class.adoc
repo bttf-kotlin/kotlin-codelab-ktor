@@ -6,11 +6,7 @@ ifndef::sourcedir[:sourcedir: ../../main/kotlin]
 
 == Contexte
 
-Afin de bien démarrer ce codelab, nous vous avons déjà généré un squelette de projet avec le site https://start.spring.io
-
-Ce site permet d'avoir un projet prêt à l'emploi et nous évitera de perdre du temps dans ce codelab.
-Nous vous invitons si vous ne le connaissez pas à découvrir ce site après le codelab.
-
+Afin de bien démarrer ce codelab, nous vous avons déjà créé un projet Kotlin avec Gradle.
 
 == Un peu de théorie
 
@@ -101,9 +97,10 @@ Là où la `Data Class` est très intéressante, c'est que le compilateur va nou
 Vous trouverez plus d'informations si besoin sur https://kotlinlang.org/docs/reference/data-classes.html[le site officiel de Kotlin].
 
 
-== Exercice 1
+== Exercice 0
 
 Passons maintenant à la pratique.
+Pour ce premier exercice, nous allons le faire ensemble. 
 
 Si ce n'est pas déjà fait, faites un checkout du step0.
 
@@ -112,14 +109,7 @@ Si ce n'est pas déjà fait, faites un checkout du step0.
 git checkout step0
 ----
 
-Aller dans la `Data Class` `Event` et supprimer l'annotation `@JsonIgnoreProperties`.
-
-Lancer l'application via la classe `KotlinCodelabBttfApplication`.
-
-Corriger le problème que vous rencontrez.
-
-NOTE: Comme vous pouvez le remarquer, `Event` est une `Data Class`.
-La syntaxe est très concise pour créer des POJOs.
+Est ce que votre projet compile? Pourquoi?
 
 
 == Un peu de théorie
@@ -132,7 +122,7 @@ Une fonction Kotlin se déclare de la manière suivant :
 
 [source, kotlin]
 ----
-fun sum(a: Int, b: Int): Int {
+fun sum(a: Int, b: Int): Int { // <1> <2> <3> <4>
     return a + b
 }
 ----
@@ -156,8 +146,13 @@ fun sum(a: Int, b: Int) = a + b
 Vous trouverez plus d'informations sur les fonctions sur https://kotlinlang.org/docs/reference/functions.html#function-declarations[le site officiel de Kotlin].
 
 
-NOTE: Il est possible de déclarer une méthode avec des espaces dans le nom.
+[NOTE] 
+--
+Il est possible de déclarer une méthode avec des espaces dans le nom.
+Pour cela nous utiliserons le charactère `.
+
 C'est une pratique à réserver aux tests mais qui s'avère bien pratique pour écrire des tests explicites.
+--
 
 [source, kotlin]
 ----
@@ -173,20 +168,20 @@ class MyTestCase {
 Vous trouverez plus d'informations sur les conventions de nommage des fonctions sur https://kotlinlang.org/docs/reference/coding-conventions.html#function-names[cette page]
 
 
-== Exercice 2
+== Exercice 1
 
-Dans ce second exercice, nous allons filter automatiquement les événements qui n'ont pas de date dans notre source de données.
+Si ce n'est pas déjà fait, faites un checkout du step1.
 
-Pour cela, accéder à la classe `EventController` et ajouter un filtre sur le retour de `repository. findAll()`.
+[source]
+----
+git checkout step1
+----
+
+Dans cet exercice, nous allons filter automatiquement les événements qui n'ont pas de date dans notre source de données.
+
+Pour cela, accéder à la classe `EventUtil` et ajouter un filtre sur le retour de la méthode `prettier`.
+
+Pensez à vous aider des tests unitaires présents dans `EventUtilTest.kt`.
 
 NOTE: Pour information, l'API collection de Kotlin fourni de nombreuses méthodes utilitaires sur les classes.
-
-
-
-
-
-
-
-
-
 
