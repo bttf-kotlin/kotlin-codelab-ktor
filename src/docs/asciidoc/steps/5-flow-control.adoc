@@ -129,16 +129,16 @@ fun startsWith(any: Any, prefix: String): Boolean {
 Vous trouverez plus d'informations sur l'expression `when` sur https://kotlinlang.org/docs/reference/control-flow.html#when-expression[cette page].
 
 
-== Exercice 7
+== Exercice 4
 
 [source]
 ----
-git checkout step3
+git checkout step4
 ----
 
 Dans l'exercice 4, nous avons remplacé chaque chiffre de la date par son équivalent en chaîne de charactères.
 Comme vous pouvez le remarquer ce n'est pas comme cela que l'on doit lire une date.
 
-Nous allons donc modifier notre `companion` pour gérer les cas des milliers, des centaines et des dizaines.
+Nous allons donc modifier notre `fun prettier` pour gérer les cas des milliers, des centaines et des dizaines.
 
-Pour vous aider, il y a des tests unitaires sur step3.
+Pour vous aider, il y a des tests unitaires dans la classe `EventUtilTest.kt`.
