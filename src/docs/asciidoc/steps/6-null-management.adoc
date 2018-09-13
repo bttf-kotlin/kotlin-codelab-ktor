@@ -132,61 +132,58 @@ Dans le cas précédent, `profileLabel` sera `null` si `user` est `null` ou si `
 Vous trouverez plus d'informations sur les `String template` sur https://kotlinlang.org/docs/reference/null-safety.html#nullable-types-and-non-null-types[cette page]
 
 
+=== Les extensions
+
+Les extensions `Kotlin` permettent d'étendre un type de données sans pour autant modifier la classe de départ. 
+Cela est très pratique lorsque l'on souhaite ajouter des comportements sur une classe mais que l'on n'a pas la main sur le code source. 
+
+Prenons le code suivant : 
+
+[source,kotlin]
+----
+open class Humain {
+    fun voyager(destination: String) {
+        print("Voyager ${destination}")
+    }
+}
+----
+
+
+Par défaut, un humain peut voyager. 
+Mais admettons que l'humain soit devenu sage et que l'on veille lui permettre de voyager dans le temps. 
+On peut le faire via l'extension suivante : 
+
+[source,kotlin]
+----
+fun Humain.voyagerDansLeTemps(destination: String, annee: Int) {
+        print("Voyager ${destination} en ${annee}")
+}
+----
+
+Ensuite on pourra utiliser notre extension de la manière suivante: 
+
+[source,kotlin]
+----
+val humain: Humain = Humain()
+humain.voyager("A La Rochelle")
+humain.voyagerDansLeTemps("A La Rochelle", 1985)
+----
+
+Il existe néanmoins quelques limites aux extension. 
+ 
+* Il n'est pas possible de surcharger une méthode de classe ou interface existante. 
+* Il est nécessaire d'importer l'extension dès que l'on souhaite l'utiliser.
+
 == Exercice 5
 
-Afin de commancer l'exercice suivant, faites un checkout du step2.
+Afin de commancer l'exercice suivant, faites un checkout du step5.
 
 [source]
 ----
-git checkout step2
+git checkout step5
 ----
 
-Reprenons notre projet et enrichissons un peu notre code.
-Nous allons maintenant permettre à notre endpoint d'API de gérer deux cas d'affichage.
-Le premier sera l'affichage sans transformation de la date des événements, le second sera celui que l'on a mis en place dans l'exercice précédent.
+Modifier la fonction `prettier` en extension de la classe java.util.Date.
 
-* Ajouter un paramètre optionnel dans la méthode get de `EventController`
-* En fonction du paramètre d'entrée, utiliser ou non le `companion`
-** on vous laisse choisir les valeurs permettant ou non d'utiliser le `companion`
-
-Pour vous aider, il y a des tests unitaires sur step2.
-
-== Un peu de théorie
-
-Depuis la version 1.2 de Kotlin il est possible d'initialiser plus tard une `val` dans le code.
-Pour cela il faut utiliser le modifier `lateinit`.
-Cela est notamment utile lors de l'utilisation d'une lambda dans un constructeur.
-
-[source, kotlin]
-----
-// A cycle of three nodes:
-lateinit var third: Node<Int>
-
-val second = Node(2, next = { third })
-val first = Node(1, next = { second })
-
-third = Node(3, next = { first })
-----
-
-Pour éviter les problèmes lors de l'utilisation des variables déclarée avec le modifier `lateinit`, il est possible d'utiliser la méthode  `isInitialized`
-
-[source, kotlin]
-----
-println("isInitialized before assignment: " + this::lateinitVar.isInitialized)
-lateinitVar = "value"
-println("isInitialized after assignment: " + this::lateinitVar.isInitialized)
-----
-
-NOTE: Le modifier `lateinit` est régulièrement utilisé dans les projets Spring.
-L'injection de dépendance pourra toujours être effectuée sans problème et le code compilera.
-
-Vous trouverez plus d'informations sur le `lateinit` sur http://kotlinlang.org/docs/reference/whatsnew12.html#lateinit-top-level-properties-and-local-variables[cette page].
-
-
-== Exercice 6
-
-Ici nous n'allons pas coder, mais simplement découvrir l'utilisation du `lateinit` dans le cadre d'un projet Spring.
-
-Regarder le code de la classe https://github.com/bttf-kotlin/kotlin-codelab-bttf/blob/3b2d6914c80f00180ff57b01608576049bc33632/src/main/kotlin/com/github/kotlincodelabbttf/controllers/EventController.kt#L13-L14[`EventController`].
-
+N'oubliez pas d'exécuter les TU!
 
