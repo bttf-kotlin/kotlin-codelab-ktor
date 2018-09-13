@@ -136,3 +136,23 @@ Accéder au répertoire du projet et lancer la commande suivante :
 ----
 
 Voilà c'est bon vous êtes prêt pour effectuer le codelab avec nous. 
+
+== Importer le projet dans Intellij IDEA community
+
+Lancer Intellij IDEA Community Edition et importez un projet existant.
+
+image::import-project-2.png[]
+
+Sélectionnez l'import pour `Gradle` puis faire `next`
+
+image::import-project-3.png[]
+
+Cochez la case `auto-import` et cliquez sur `finish`
+
+image::import-project-4.png[]
+
+L'import devrait se passer sans problème. 
+
+Une fois celui-ci terminé, lancez le `main` présent dans `Main.kt`
+
+image::import-project-5.png[]

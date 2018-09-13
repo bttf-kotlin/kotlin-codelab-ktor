@@ -53,6 +53,6 @@ git checkout step3
 
 Nous avons ajouté kTor (Voir `build.gradle` et `Main.kt`)
 
-Ajouter un point d'entré REST pour afficher notre liste.
+Ajouter un point d'entré REST pour afficher notre liste. Le point d'entrée REST devra être disponible sur `/events`
 
 
