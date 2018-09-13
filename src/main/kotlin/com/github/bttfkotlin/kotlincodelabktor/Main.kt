@@ -47,7 +47,13 @@ fun Application.module() {
                 "desc" -> EventService.getAllEvents().sortedByDescending { it.date }
                 else -> EventService.getAllEvents()
             }
-            call.respond(Date().prettier(events))
+
+            call.respond(if(call.request.queryParameters["prettier"].isNullOrEmpty()) {
+                events
+            }
+            else{
+                Date().prettier(events)
+            })
         }
     }
 }
