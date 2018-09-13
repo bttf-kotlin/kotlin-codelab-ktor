@@ -42,10 +42,16 @@ fun Application.module() {
             call.respondText("Hello JugSummer Camp")
         }
         get("/events") {
-            val events  = when (call.request.queryParameters["sort"]) {
+            var events  = when (call.request.queryParameters["sort"]) {
                 "asc" -> EventService.getAllEvents().sortedBy { it.date }
                 "desc" -> EventService.getAllEvents().sortedByDescending { it.date }
                 else -> EventService.getAllEvents()
+            }
+
+            events  = when (call.request.queryParameters["split"]) {
+                "before" -> events.partition { it.date.toInt() < 1985 }.first
+                "after" -> events.partition { it.date.toInt() < 1985 }.second
+                else -> events
             }
 
             call.respond(if(call.request.queryParameters["prettier"].isNullOrEmpty()) {
