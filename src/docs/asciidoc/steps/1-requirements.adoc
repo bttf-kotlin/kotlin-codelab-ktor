@@ -94,7 +94,7 @@ Récupérer l'archive de l'édition community.
 
 Désarchiver l'archive dans un répertoire de votre choix.
 
-Pour lancer l'IDE, il vous suffira d'accéder au répertoire où vous avez installé l'IDE et de lancer le fichier `idea.sh`présent dans le répertoire bin.
+Pour lancer l'IDE, il vous suffira d'accéder au répertoire où vous avez installé l'IDE et de lancer le fichier `idea.sh`présent dans le sous-répertoire bin.
 
 
 === Mac
@@ -124,8 +124,7 @@ Exécuter l'installeur et suivre les instructions.
 En ligne de commande :
 
 ----
-git clone https://github.com/bttf-kotlin/kotlin-codelab-bttf.git
-git checkout step0
+git clone git@github.com:bttf-kotlin/kotlin-codelab-ktor.git
 ----
 
 == Builder l'application 
@@ -135,3 +134,25 @@ Accéder au répertoire du projet et lancer la commande suivante :
 ----
 ./gradlew build
 ----
+
+Voilà c'est bon vous êtes prêt pour effectuer le codelab avec nous. 
+
+== Importer le projet dans Intellij IDEA community
+
+Lancer Intellij IDEA Community Edition et importez un projet existant.
+
+image::import-project-2.png[]
+
+Sélectionnez l'import pour `Gradle` puis faire `next`
+
+image::import-project-3.png[]
+
+Cochez la case `auto-import` et cliquez sur `finish`
+
+image::import-project-4.png[]
+
+L'import devrait se passer sans problème. 
+
+Une fois celui-ci terminé, lancez le `main` présent dans `Main.kt`
+
+image::import-project-5.png[]
