@@ -49,14 +49,6 @@ object MonSingleton {
 
 Avec l'exemple précédent, on peut appeler directement notre méthode via `MonSingleton.callMe()`.
 
-=== `Object`
-
-TODO
-
-Il existe aussi la notion de Companion
-
-Vous trouverez plus d'informations sur les `companion` sur https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects[cette page]
-
 
 == Un peu de théorie
 
