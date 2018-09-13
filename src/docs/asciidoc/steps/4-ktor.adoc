@@ -1,0 +1,58 @@
+= kTor
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+
+== Un peu de théorie
+
+=== kTor
+
+Ktor est un framework d'application Web écrit lui-même en Kotlin, dont le but est de fournir un outil de création d'application web (servlet 3.0) ou API REST en Kotlin.
+Le livrable produit peut être hébergé sur un containeur de servlet comme Tomcat ou en standalone avec, par exemple, Netty.
+kTor est construit autour des coroutines de Kotlin et est donc asynchrone par nature.
+kTor n'oblige pas à utiliser une framework ou un outil, vous pouvez donc utiliser ce que vous voulez pour la journalisaton, l'injection de dépendance, le templating,...
+kTor se veut léger, mais extensible par un mécanisme de plugin utilisant le DSL de Kotlin.
+
+==== Voici comment créer une application REST avec kTor
+```
+import io.ktor.server.netty.*
+import io.ktor.routing.*
+import io.ktor.application.*
+import io.ktor.http.*
+import io.ktor.response.*
+import io.ktor.server.engine.*
+
+fun main(args: Array<String>) {
+    embeddedServer(Netty, 8080) {
+        routing {
+            get("/") {
+                call.respondText("Hello, world!", ContentType.Text.Html)
+            }
+        }
+    }.start(wait = true)
+}
+```
+
+Pour utiliser kTor sur un projet Kotlin, il suffit d'ajouter la dependance : 
+```
+compile "io.ktor:ktor-server-core:0.9.3"
+```
+pour gradle
+
+Le site http://ktor.io[ktor.io] permet de créer des templates d'application selon votre besoin (comme le fait http://start.spring.io)
+
+
+== Exercice 3
+
+[source]
+----
+git checkout step3
+----
+
+Nous avons ajouté kTor (Voir `build.gradle` et `Main.kt`)
+
+Ajouter un point d'entré REST pour afficher notre liste. Le point d'entrée REST devra être disponible sur `/events`
+
+

@@ -1,0 +1,13 @@
+= Pour aller plus loin
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+
+== Exercice 6
+
+Aller dans Menu > Tools > Kotlin > Show Kotlin Bytecode
+
+Ouvrer un de vos fichiers Kotlin et cliquer sur `Decompile' et vous verrez le code convertie de Kotlin vers ByteCode puis vers Java
+Cet outil est interessant pour les developpeurs connaisant bien Java.
