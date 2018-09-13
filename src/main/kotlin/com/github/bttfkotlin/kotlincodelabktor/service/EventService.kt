@@ -1,10 +1,29 @@
 package com.github.bttfkotlin.kotlincodelabktor.service
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.bttfkotlin.kotlincodelabktor.bean.Event
+import io.ktor.client.HttpClient
+import io.ktor.client.call.call
+import io.ktor.client.engine.apache.Apache
+import io.ktor.client.response.readText
+import java.nio.charset.Charset
 
 
 object EventService {
-    fun getAllEvents(): List<Event> {
+        suspend fun sequentialRequests() : List<Event>{
+                val client = HttpClient(Apache)
+
+                // Get the content of an URL.
+                val json: String = client.call("https://summer.adrien.me/events.json").response.readText(Charset.defaultCharset()) // Suspension point.
+
+                val mapper = jacksonObjectMapper()
+                return mapper.readValue(json)
+
+        }
+
+
+        fun getAllEvents(): List<Event> {
         return listOf(
                 Event(
                         date = "1776",

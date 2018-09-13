@@ -18,7 +18,6 @@ import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
-import java.text.SimpleDateFormat
 import java.util.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.DevelopmentEngine.main(args)
@@ -42,7 +41,7 @@ fun Application.module() {
             call.respondText("Hello JugSummer Camp")
         }
         get("/events") {
-            call.respond(Date().prettier(EventService.getAllEvents()))
+            call.respond(Date().prettier(EventService.sequentialRequests()))
         }
     }
 }
