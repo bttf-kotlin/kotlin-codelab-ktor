@@ -1,0 +1,15 @@
+= kotlin : le back du futur
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: images]
+ifndef::sourcedir[:sourcedir: ../main/kotlin]
+
+
+include::steps/1-requirements.adoc[leveloffset=+1]
+include::steps/2-val-vs-var-class.adoc[leveloffset=+1]
+include::steps/3-functions.adoc[leveloffset=+1]
+include::steps/4-ktor.adoc[leveloffset=+1]
+include::steps/5-flow-control.adoc[leveloffset=+1]
+include::steps/6-null-management.adoc[leveloffset=+1]
+include::steps/7-move-forward.adoc[leveloffset=+1]
+

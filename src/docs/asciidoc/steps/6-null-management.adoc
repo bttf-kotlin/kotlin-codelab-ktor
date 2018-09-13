@@ -1,0 +1,189 @@
+= Gestion de la nullité et initialisation tardive
+Adrien Pessu
+Gautier de Saint Martin Lacaze
+ifndef::imagesdir[:imagesdir: ../images]
+ifndef::sourcedir[:sourcedir: ../../main/kotlin]
+
+== Un peu de théorie
+
+=== La mort de l'opérateur ternaire
+
+Bon ok, c'est peut être un peu pour le buzz.
+
+Pour le moment, on n'a pas encore parlé des conditions. Les fameux `if`.
+Tout comme en Java il est possible d'utiliser le if en tant que gestionnaire du flux d'éxécution (désolé, nous n'avons pas trouvé mieux comme traduction française de flow control).
+
+[source, kotlin]
+----
+val a = 10
+val b = 11
+
+if (a < b) {
+    print ("Youhou a est inférieur à b")
+}
+
+// Version avec un else
+if (a < b) {
+    print ("Youhou a est inférieur à b")
+} else {
+    print ("Youhou b est inférieur à a")
+}
+----
+
+Il existe une autre façon d'utiliser le `if` et c'est pourquoi on peut parle plus ou mois de la fin de l'opérateur ternaire (le fameux `= ? :`).
+En Kotlin, `if` est une expression.
+Il est donc possible de s'en servir pour remplacer l'opérateur ternaire.
+
+[source, kotlin]
+----
+val max = if (a > b) a else b
+----
+
+On peut même imaginer plus complexe avec l'exemple suivant.
+
+[source, kotlin]
+----
+val max = if (a > b) {
+    print("Youhou a est le plus grand")
+    a
+} else {
+    print("Youhou b est le plus grand")
+    b
+}
+----
+
+Vous trouverez plus d'informations sur les `String template` sur https://kotlinlang.org/docs/reference/control-flow.html#if-expression[cette page]
+
+
+=== Gestion du null
+
+Le système de type de Kotlin vise à éliminer le danger des références nulles à partir du code.
+Ce problème est également connu sous le nom de https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions[The Billion Dollar Mistake].
+Bien entendu on parle de la fameuse NullPointerException de Java (aka NPE).
+
+Pour régler ce problème, Kotlin ne permet pas par défaut d'avoir des références nulles.
+Le code suivant est donc *invalide*.
+
+[source, kotlin]
+----
+var kotlin: String = "Kotlin for the win !"
+kotlin = null // Le code ne compile pas
+----
+
+Il est possible de déclarer une variable nulle.
+Dans ce cas nous utiliserons une précision syntaxique pour indiquer que l'on autorise le null.
+
+[source, kotlin]
+----
+var java: String? = "Java for the NPE"
+java = null // Dans ce cas le code compile
+----
+
+NOTE: Notez bien l'utilisation du `?` dans la déclaration de la variable `java`.
+
+A part la déclaration explicite d'une variable nulle, il existe d'autres cas pouvant générer une NPE :
+
+* un appel à `throw NullPointerException()`
+* l'utilisation de l'opérateur !! (non présenté dans cette partie cf. le site officiel de Kotlin)
+* un problème de données inconsistantes lors de l'initialisation
+* l'intéraction avec du code Java
+
+
+Alors qu'est ce qui change entre nos deux morceaux de code précédent.
+
+Pour le premier, c'est simple l'appel suivant sera valide.
+
+[source, kotlin]
+----
+val length = kotlin.length
+----
+
+Pour le second, ce n'est pas le cas.
+
+
+[source, kotlin]
+----
+val length = java.length // Erreur de compilation
+----
+
+Le compilateur va nous forcer à gérer les cas de la nullité.
+Et clairement c'est un gros progrès par rapport au compilateur Java.
+Pour la gestion de la nullité, on peut alors utiliser le `if else` traditionnel, ou bien le `safe call operator` `?.`.
+
+[source, kotlin]
+----
+val length: Int? = java?.length // Ici ça compile
+----
+
+La valeur de `length` sera soit la taille de `java` si `java` est valorisé, ou alors `null`.
+
+NOTE: On peut remarquer que le type de length sera alors `Int?` et non pas `Int`
+
+Là où cela devient très intéressant c'est que l'on peut chaîner les opérateurs `?.`.
+
+
+[source, kotlin]
+----
+val profileLabel = user?.profile?.label
+----
+
+Dans le cas précédent, `profileLabel` sera `null` si `user` est `null` ou si `profile` est `null`.
+
+Vous trouverez plus d'informations sur les `String template` sur https://kotlinlang.org/docs/reference/null-safety.html#nullable-types-and-non-null-types[cette page]
+
+
+=== Les extensions
+
+Les extensions `Kotlin` permettent d'étendre un type de données sans pour autant modifier la classe de départ. 
+Cela est très pratique lorsque l'on souhaite ajouter des comportements sur une classe mais que l'on n'a pas la main sur le code source. 
+
+Prenons le code suivant : 
+
+[source,kotlin]
+----
+open class Humain {
+    fun voyager(destination: String) {
+        print("Voyager ${destination}")
+    }
+}
+----
+
+
+Par défaut, un humain peut voyager. 
+Mais admettons que l'humain soit devenu sage et que l'on veille lui permettre de voyager dans le temps. 
+On peut le faire via l'extension suivante : 
+
+[source,kotlin]
+----
+fun Humain.voyagerDansLeTemps(destination: String, annee: Int) {
+        print("Voyager ${destination} en ${annee}")
+}
+----
+
+Ensuite on pourra utiliser notre extension de la manière suivante: 
+
+[source,kotlin]
+----
+val humain: Humain = Humain()
+humain.voyager("A La Rochelle")
+humain.voyagerDansLeTemps("A La Rochelle", 1985)
+----
+
+Il existe néanmoins quelques limites aux extension. 
+ 
+* Il n'est pas possible de surcharger une méthode de classe ou interface existante. 
+* Il est nécessaire d'importer l'extension dès que l'on souhaite l'utiliser.
+
+== Exercice 5
+
+Afin de commancer l'exercice suivant, faites un checkout du step5.
+
+[source]
+----
+git checkout step5
+----
+
+Modifier la fonction `prettier` en extension de la classe java.util.Date.
+
+N'oubliez pas d'exécuter les TU!
+
