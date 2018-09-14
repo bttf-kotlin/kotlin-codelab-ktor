@@ -32,7 +32,7 @@ Pour les utiliser, on peut utiliser la méthode `rangeTo`.
 1.rangeTo(10)
 ----
 
-Il existe une écrire plus courte via l'opérateur `..`.
+Il existe une écriture plus courte via l'opérateur `..`.
 
 [source, kotlin]
 ----
@@ -62,7 +62,7 @@ L'expression `when` est un équivalent du `switch` présent dans de nombreux lan
 C'est également une expression fonctionnelle permettant de faire du https://en.wikipedia.org/wiki/Pattern_matching[pattern matching].
 
 
-Il existe deux façon d'utiliser le `when`.
+Il existe deux façons d'utiliser le `when`.
 Soit il prend un argument.
 Soit on ne met pas d'argument.
 Dans ce second cas, le when permet de remplacer facilement une série de if / else.
@@ -99,7 +99,7 @@ fun whichOneIsBigger(x: Int, y: Int) {
 }
 ----
 
-A plusieurs moment, on a indiqué que `when` était une expression.
+A plusieurs moments, on a indiqué que `when` était une expression.
 Celle-ci est donc assignable à une variable.
 La syntaxe suivante est valide.
 
