@@ -136,7 +136,7 @@ Vous trouverez plus d'informations sur l'expression `when` sur https://kotlinlan
 git checkout step4
 ----
 
-Dans l'exercice 4, nous avons remplacé chaque chiffre de la date par son équivalent en chaîne de charactères.
+Dans l'exercice 2, nous avons remplacé chaque chiffre de la date par son équivalent en chaîne de charactères.
 Comme vous pouvez le remarquer ce n'est pas comme cela que l'on doit lire une date.
 
 Nous allons donc modifier notre `fun prettier` pour gérer les cas des milliers, des centaines et des dizaines.
