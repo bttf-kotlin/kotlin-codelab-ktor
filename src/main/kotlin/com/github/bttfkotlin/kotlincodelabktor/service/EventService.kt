@@ -27,33 +27,6 @@ object EventService {
                         description = "Doc read it at the age of 11"
                 ),
                 Event(
-                        date = "1865",class EventUtilText {
-
-                        @Test
-                        fun `1985 should return one nine eight five`() {
-                                val testedDate = "1985"
-
-                                val events = listOf(Event(testedDate, "test", "test"))
-                                val event = (EventUtil.prettier(events))[0]
-                                Assertions.assertEquals(
-                                        event.date
-                                        , "1985")
-                        }
-
-                        @Test
-                        fun `When there is no date, nothing should be return`() {
-                                val events = listOf(Event("", "test", "test"))
-                                val size = EventUtil.prettier(events).size
-
-                                Assertions.assertEquals(
-                                        size
-                                        , 0)
-                        }
-                }
-                        title = "first edition of \"From the Earth to the Moon",
-                        description = "Emmett and Clara both read it"
-                ),
-                Event(
                         date = "1869",
                         title = "first edition of \"20000 Leagues under the Sea",
                         description = "Doc's favorite novel"

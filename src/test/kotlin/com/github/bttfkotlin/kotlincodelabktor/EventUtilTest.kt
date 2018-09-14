@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class EventUtilText {
+class EventUtilTest {
 
     @Test
     fun `1985 should return one nine eight five`() {
