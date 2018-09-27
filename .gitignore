@@ -89,11 +89,6 @@ local.properties
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
-# Gradle
-.gradle
-.gradle/
-/build/
-
 # Ignore Gradle GUI config
 gradle-app.setting
 
