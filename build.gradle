@@ -1,9 +1,10 @@
 buildscript {
-    ext.kotlin_version = '1.2.51'
-    ext.ktor_version = '0.9.3'
+    ext.kotlin_version = '1.2.71'
+    ext.ktor_version = '0.9.5'
 
     ext.logback_version = '1.2.1'
     ext.jackson_version = '2.9.2'
+    ext.jupiter_version = '5.2.0'
 
     repositories {
         mavenCentral()
@@ -20,7 +21,6 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'idea'
 apply plugin: 'org.asciidoctor.convert'
 
@@ -49,9 +49,9 @@ dependencies {
     compile "ch.qos.logback:logback-classic:$logback_version"
 
     testCompile "io.ktor:ktor-server-tests:$ktor_version"
-    testCompile('org.junit.jupiter:junit-jupiter-api:5.2.0')
-    testCompile('org.junit.jupiter:junit-jupiter-params:5.2.0')
-    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
+    testCompile("org.junit.jupiter:junit-jupiter-api:$jupiter_version'")
+    testCompile("org.junit.jupiter:junit-jupiter-params:$jupiter_version")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiter_version")
 }
 
 kotlin.experimental.coroutines = 'enable'
@@ -72,14 +72,14 @@ asciidoctor {
 
     attributes \
         'build-gradle': file('build.gradle'),
-            'sourcedir': source,
-            'source-highlighter': 'coderay',
-            'imagesdir': 'images',
-            'toc': 'left',
-            'toclevels': '4',
-            'icons': 'font',
-            'setanchors': '',
-            'idprefix': '',
-            'idseparator': '-',
-            'docinfo1': ''
+    'sourcedir': source,
+    'source-highlighter': 'coderay',
+    'imagesdir': 'images',
+    'toc': 'left',
+    'toclevels': '4',
+    'icons': 'font',
+    'setanchors': '',
+    'idprefix': '',
+    'idseparator': '-',
+    'docinfo1': ''
 }
