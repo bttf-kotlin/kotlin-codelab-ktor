@@ -15,8 +15,8 @@ class EventUtilTest {
         val events = listOf(Event(testedDate, "test", "test"))
         val event = (EventUtil.prettier(events))[0]
         Assertions.assertEquals(
-                event.date
-                , "1985")
+                "1985",
+                event.date)
     }
 
     @Test
@@ -25,8 +25,8 @@ class EventUtilTest {
         val size = EventUtil.prettier(events).size
 
         Assertions.assertEquals(
-                size
-                , 0)
+                0,
+                size)
     }
 }
 
