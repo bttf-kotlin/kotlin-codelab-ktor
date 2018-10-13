@@ -14,8 +14,8 @@ class EventUtilText {
         val events = listOf(Event(testedDate, "test", "test"))
         val event = (EventUtil.prettier(events))[0]
         assertEquals(
-                event.date
-                , "one thousand nine hundred and eighty five")
+                "one thousand nine hundred and eighty five",
+                event.date)
     }
 
     @Test
@@ -25,8 +25,8 @@ class EventUtilText {
         val events = listOf(Event(testedDate, "test", "test"))
         val event = (EventUtil.prettier(events))[0]
         assertEquals(
-                event.date
-                , "one thousand nine hundred and thirteen")
+                "one thousand nine hundred and thirteen"
+                , event.date)
     }
 
     @Test
@@ -35,8 +35,8 @@ class EventUtilText {
         val size = EventUtil.prettier(events).size
 
         assertEquals(
-                size
-                , 0)
+                0
+                , size)
     }
 }
 
