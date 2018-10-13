@@ -162,7 +162,7 @@ class MyTestCase {
 
      @Test fun ensureEverythingWorks_onAndroid() {
      }
-}s
+}
 ----
 
 Vous trouverez plus d'informations sur les conventions de nommage des fonctions sur https://kotlinlang.org/docs/reference/coding-conventions.html#function-names[cette page]

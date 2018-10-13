@@ -204,5 +204,5 @@ Modifier la méthode `prettier` pour remplacer chaque chiffre par son équivalen
 
 Il n'y a pas qu'une seule solution. 
 
-Pensez à vous aider des tests unitaires présents dans `EventUtilTest.kt`.
+Pensez à vous aider des tests unitaires présents dans `EventUtilText.kt`.
 
