@@ -12,7 +12,6 @@ Pour le moment nous avons vu les rapidement les éléments suivants de Kotlin :
 * `val` et `var`
 * `class` et `data class`
 * méthode statique
-* `companion`
 * paramètre nommé
 * paramètre par défaut
 * copy
@@ -32,7 +31,7 @@ Pour les utiliser, on peut utiliser la méthode `rangeTo`.
 1.rangeTo(10)
 ----
 
-Il existe une écrire plus courte via l'opérateur `..`.
+Il existe une écriture plus courte via l'opérateur `..`.
 
 [source, kotlin]
 ----
@@ -62,7 +61,7 @@ L'expression `when` est un équivalent du `switch` présent dans de nombreux lan
 C'est également une expression fonctionnelle permettant de faire du https://en.wikipedia.org/wiki/Pattern_matching[pattern matching].
 
 
-Il existe deux façon d'utiliser le `when`.
+Il existe deux façons d'utiliser le `when`.
 Soit il prend un argument.
 Soit on ne met pas d'argument.
 Dans ce second cas, le when permet de remplacer facilement une série de if / else.
@@ -99,7 +98,7 @@ fun whichOneIsBigger(x: Int, y: Int) {
 }
 ----
 
-A plusieurs moment, on a indiqué que `when` était une expression.
+A plusieurs moments, on a indiqué que `when` était une expression.
 Celle-ci est donc assignable à une variable.
 La syntaxe suivante est valide.
 
@@ -136,7 +135,7 @@ Vous trouverez plus d'informations sur l'expression `when` sur https://kotlinlan
 git checkout step4
 ----
 
-Dans l'exercice 4, nous avons remplacé chaque chiffre de la date par son équivalent en chaîne de charactères.
+Dans l'exercice 2, nous avons remplacé chaque chiffre de la date par son équivalent en chaîne de charactères.
 Comme vous pouvez le remarquer ce n'est pas comme cela que l'on doit lire une date.
 
 Nous allons donc modifier notre `fun prettier` pour gérer les cas des milliers, des centaines et des dizaines.
