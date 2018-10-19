@@ -34,7 +34,7 @@ fun Application.module() {
     }
     routing {
         get("/") {
-            call.respondText("Hello JugSummer Camp")
+            call.respondText("Hello Devfest Nantes")
         }
     }
 }
