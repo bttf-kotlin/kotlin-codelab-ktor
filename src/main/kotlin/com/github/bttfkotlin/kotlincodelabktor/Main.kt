@@ -37,7 +37,7 @@ fun Application.module() {
     }
     routing {
         get("/") {
-            call.respondText("Hello JugSummer Camp")
+            call.respondText("Hello devfest Nantes")
         }
         get("/events") {
             call.respond(EventUtil.prettier(EventService.getAllEvents()))
