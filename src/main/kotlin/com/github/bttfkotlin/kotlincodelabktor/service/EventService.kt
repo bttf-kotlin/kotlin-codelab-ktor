@@ -7,6 +7,11 @@ object EventService {
     fun getAllEvents(): List<Event> {
         return listOf(
                 Event(
+                        date = "500",
+                        title = "cahokia was settled",
+                        description = "the largest and most complex archaeological site north of the great pre-Columbian cities in Mexico"
+                ),
+                Event(
                         date = "1776",
                         title = "sign of the declaration of independance",
                         description = "you could really see it"
