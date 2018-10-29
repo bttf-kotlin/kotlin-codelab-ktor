@@ -8,7 +8,18 @@ import org.junit.jupiter.api.Test
 class EventUtilText {
 
     @Test
-    fun `1985 should return one nine eight five`() {
+    fun `500 should return five hundred`() {
+        val testedDate = "500"
+
+        val events = listOf(Event(testedDate, "test", "test"))
+        val event = (EventUtil.prettier(events))[0]
+        assertEquals(
+                "five hundred",
+                event.date)
+    }
+
+    @Test
+    fun `1985 should return one thousand nine hundred and eighty five`() {
         val testedDate = "1985"
 
         val events = listOf(Event(testedDate, "test", "test"))
@@ -30,7 +41,7 @@ class EventUtilText {
     }
 
     @Test
-    fun `When there is no date, nothing should be return`() {
+    fun `When there is no date, nothing should be returned`() {
         val events = listOf(Event("", "test", "test"))
         val size = EventUtil.prettier(events).size
 
