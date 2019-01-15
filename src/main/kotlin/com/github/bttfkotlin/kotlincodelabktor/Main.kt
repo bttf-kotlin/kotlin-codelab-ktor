@@ -16,7 +16,7 @@ import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.DevelopmentEngine.main(args)
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module() {
     install(DefaultHeaders)
@@ -34,7 +34,7 @@ fun Application.module() {
     }
     routing {
         get("/") {
-            call.respondText("Hello Devfest Nantes")
+            call.respondText("Hello Jug Montpellier")
         }
     }
 }
