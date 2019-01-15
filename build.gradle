@@ -1,6 +1,6 @@
 buildscript {
-    ext.kotlin_version = '1.2.71'
-    ext.ktor_version = '0.9.5'
+    ext.kotlin_version = '1.3.11'
+    ext.ktor_version = '1.1.1'
 
     ext.logback_version = '1.2.1'
     ext.jackson_version = '2.9.2'
@@ -53,8 +53,6 @@ dependencies {
     testCompile("org.junit.jupiter:junit-jupiter-params:$jupiter_version")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiter_version")
 }
-
-kotlin.experimental.coroutines = 'enable'
 
 test {
     useJUnitPlatform()
