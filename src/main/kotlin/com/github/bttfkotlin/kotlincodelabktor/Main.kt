@@ -21,7 +21,7 @@ import io.ktor.routing.routing
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.DevelopmentEngine.main(args)
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module() {
     install(DefaultHeaders)
